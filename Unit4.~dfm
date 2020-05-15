@@ -1,10 +1,10 @@
 object Home: THome
-  Left = 315
-  Top = 175
+  Left = 592
+  Top = 171
   Width = 1058
-  Height = 712
+  Height = 720
   BorderIcons = [biMinimize, biMaximize]
-  Caption = 'Home'
+  Caption = #1043#1083#1072#1074#1085#1072#1103
   Color = clGradientActiveCaption
   Constraints.MinHeight = 712
   Constraints.MinWidth = 1058
@@ -17,6 +17,18 @@ object Home: THome
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
+  object Label1: TLabel
+    Left = 560
+    Top = 632
+    Width = 3
+    Height = 13
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+  end
   object Button1: TButton
     Left = 960
     Top = 592
@@ -44,17 +56,17 @@ object Home: THome
   object Button3: TButton
     Left = 960
     Top = 512
-    Width = 73
-    Height = 81
+    Width = 75
+    Height = 75
     Caption = 'Button3'
     TabOrder = 2
     OnClick = Button3Click
   end
   object ListBox1: TListBox
-    Left = 64
-    Top = 32
-    Width = 313
-    Height = 433
+    Left = 8
+    Top = 8
+    Width = 545
+    Height = 657
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -20
@@ -63,5 +75,6 @@ object Home: THome
     ItemHeight = 25
     ParentFont = False
     TabOrder = 3
+    OnClick = ListBox1Click
   end
 end
