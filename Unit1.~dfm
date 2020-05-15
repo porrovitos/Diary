@@ -1,6 +1,6 @@
 object First: TFirst
-  Left = 620
-  Top = 116
+  Left = 779
+  Top = 141
   Width = 449
   Height = 110
   BorderIcons = [biSystemMenu]
