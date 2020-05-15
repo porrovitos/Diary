@@ -1,6 +1,6 @@
 object Login: TLogin
-  Left = 184
-  Top = 121
+  Left = 442
+  Top = 475
   Width = 219
   Height = 257
   BorderIcons = []
@@ -20,7 +20,7 @@ object Login: TLogin
   TextHeight = 13
   object Label1: TLabel
     Left = 8
-    Top = 8
+    Top = 24
     Width = 185
     Height = 25
     Caption = #1048#1084#1103' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1103':'
@@ -33,7 +33,7 @@ object Login: TLogin
   end
   object Label2: TLabel
     Left = 8
-    Top = 64
+    Top = 72
     Width = 74
     Height = 25
     Caption = #1055#1072#1088#1086#1083#1100':'
@@ -67,14 +67,14 @@ object Login: TLogin
   end
   object Edit1: TEdit
     Left = 8
-    Top = 32
+    Top = 48
     Width = 185
     Height = 21
     TabOrder = 1
   end
   object Edit2: TEdit
     Left = 8
-    Top = 88
+    Top = 96
     Width = 185
     Height = 21
     PasswordChar = '*'
@@ -88,5 +88,14 @@ object Login: TLogin
     Caption = #1053#1072#1079#1072#1076
     TabOrder = 3
     OnClick = Button2Click
+  end
+  object Button3: TButton
+    Left = 144
+    Top = 8
+    Width = 49
+    Height = 17
+    Caption = 'X'
+    TabOrder = 4
+    OnClick = Button3Click
   end
 end

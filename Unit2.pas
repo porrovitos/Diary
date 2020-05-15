@@ -15,8 +15,10 @@ type
     Button2: TButton;
     Label2: TLabel;
     Label3: TLabel;
+    Button3: TButton;
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -58,11 +60,15 @@ begin
       k:=1;
     end;
 
- // if k = 0 then
-  //  for i:=1 to 100 do
-
       
   Home.Show;
+  Login.Hide;
+  
+end;
+
+procedure TLogin.Button3Click(Sender: TObject);
+begin
+First.Close;
 end;
 
 end.

@@ -15,8 +15,10 @@ type
     Button1: TButton;
     Button2: TButton;
     Label3: TLabel;
+    Button3: TButton;
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -86,6 +88,11 @@ begin
       Login.Show;
     end;
   CloseFile(accaunts);
+end;
+
+procedure TSign_In.Button3Click(Sender: TObject);
+begin
+First.Close;
 end;
 
 end.
