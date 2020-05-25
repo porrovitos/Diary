@@ -1,6 +1,6 @@
-object Home: THome
-  Left = 381
-  Top = 350
+object Home_window: THome_window
+  Left = 507
+  Top = 283
   Width = 1058
   Height = 720
   BorderIcons = [biMinimize, biMaximize]
@@ -14,10 +14,9 @@ object Home: THome
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
-  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
+  object Error_label: TLabel
     Left = 560
     Top = 632
     Width = 3
@@ -29,7 +28,7 @@ object Home: THome
     Font.Style = []
     ParentFont = False
   end
-  object Button1: TButton
+  object New_Record_btn: TButton
     Left = 960
     Top = 592
     Width = 75
@@ -42,27 +41,26 @@ object Home: THome
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    OnClick = Button1Click
+    OnClick = New_Record_btnClick
   end
-  object Button2: TButton
+  object Exit_btn: TButton
     Left = 1000
     Top = 8
     Width = 35
     Height = 25
     Caption = 'X'
     TabOrder = 1
-    OnClick = Button2Click
+    OnClick = Exit_btnClick
   end
-  object Button3: TButton
+  object Control_Panel_btn: TButton
     Left = 960
     Top = 512
     Width = 75
     Height = 75
-    Caption = 'Button3'
+    Caption = 'Control_Panel_btn'
     TabOrder = 2
-    OnClick = Button3Click
   end
-  object ListBox1: TListBox
+  object List_of_Notes_listbox: TListBox
     Left = 8
     Top = 8
     Width = 545
@@ -75,6 +73,6 @@ object Home: THome
     ItemHeight = 25
     ParentFont = False
     TabOrder = 3
-    OnClick = ListBox1Click
+    OnClick = List_of_Notes_listboxClick
   end
 end

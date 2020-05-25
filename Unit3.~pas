@@ -7,18 +7,18 @@ uses
   Dialogs, StdCtrls;
 
 type
-  TSign_In = class(TForm)
-    Label1: TLabel;
-    Edit1: TEdit;
-    Label2: TLabel;
-    Edit2: TEdit;
-    Button1: TButton;
-    Button2: TButton;
-    Label3: TLabel;
-    Button3: TButton;
-    procedure Button2Click(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
+  TRegister_window = class(TForm)
+    Username_label: TLabel;
+    Username_edit: TEdit;
+    Password_label: TLabel;
+    Password_edit: TEdit;
+    Register_btn: TButton;
+    Return_btn: TButton;
+    Error_label: TLabel;
+    Exit_btn: TButton;
+    procedure Return_btnClick(Sender: TObject);
+    procedure Register_btnClick(Sender: TObject);
+    procedure Exit_btnClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -26,7 +26,7 @@ type
   end;
 
 var
-  Sign_In: TSign_In;
+  Register_window: TRegister_window;
 
 implementation
 
@@ -34,13 +34,13 @@ uses Unit1, Unit2;
 
 {$R *.dfm}
 
-procedure TSign_In.Button2Click(Sender: TObject);
+procedure TRegister_window.Return_btnClick(Sender: TObject);
 begin
-First.Show;
-Sign_In.Hide;
+Login_or_Register_window.Show;
+Register_window.Hide;
 end;
 
-procedure TSign_In.Button1Click(Sender: TObject);
+procedure TRegister_window.Register_btnClick(Sender: TObject);
 var
 accaunts: TextFile;
 name,pass,nick:string;
@@ -50,49 +50,53 @@ begin
   Reset(accaunts);
   readln(accaunts,nick);
   k:=0;
-  Label3.Caption := '';
-  if (length(Edit1.text)=0) or (length(Edit1.text)=1) then
-    begin
-      Label3.Caption := 'Вы не ввели логин'+#13#10+'или он слишком короткий';
-      k:=1;
-    end;
-  if (length(Edit2.text)=0) or (length(Edit2.text)=1) then
-    begin
-      Label3.Caption := 'Вы не ввели пароль'+#13#10+'или он слишком короткий';
-      k:=1;
-    end;
-  if  (((length(Edit2.text)=0) or (length(Edit2.text)=1)) and ((length(Edit1.text)=0) or (length(Edit1.text)=1))) then
-    begin
-      Label3.Caption := 'Вы не ввели пароль и логин'+#13#10+'или они слишком короткие';
-      k:=1;
-    end;
+  Error_label.Caption := '';
   for i:=0 to 100 do
     begin
       readln(accaunts,name);
-      if name = Edit1.Text then
+      if name = Username.Text then
         begin
-          Label3.Caption := 'Такой аккаунт уже есть.';
+          Error_label.Caption := 'Такой аккаунт уже есть.';
           k:=1;
         end;
       readln(accaunts,name);
     end;
-  nick := Edit1.Text;
-  pass := Edit2.Text;
+  if (length(Username_edit.text)=0) or (length(Username_edit.text)=1) then
+    begin
+      Error_label.Caption := 'Вы не ввели логин'+#13#10+'или он слишком короткий';
+      k:=1;
+    end;
+  if (length(Password_edit.text)=0) or (length(Password_edit.text)=1) then
+    begin
+      Error_label.Caption := 'Вы не ввели пароль'+#13#10+'или он слишком короткий';
+      k:=1;
+    end;
+  if  (((length(Password_edit.text)=0) or (length(Password_edit.text)=1)) and ((length(Username_edit.text)=0) or (length(Username_edit.text)=1))) then
+    begin
+      Label3.Caption := 'Вы не ввели пароль и логин'+#13#10+'или они слишком короткие';
+      k:=1;
+    end;
+  nick := Username_edit.Text;
+  pass := Password_edit.Text;
   CloseFile(accaunts);
   Append(accaunts);
+  Username_edit.Text :='';
+  Password_edit.Text := '';
   if k = 0 then
     begin
       Writeln(accaunts, nick);
       Writeln(accaunts, pass);
-      Sign_In.Hide;
-      Login.Show;
+      Register_window.Hide;
+      Login_window.Show;
     end;
   CloseFile(accaunts);
 end;
 
-procedure TSign_In.Button3Click(Sender: TObject);
+procedure TRegister_window.Exit_btnClick(Sender: TObject);
 begin
-First.Close;
+Login_or_Register_window.Close;
 end;
+
+
 
 end.

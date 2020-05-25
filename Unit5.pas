@@ -7,18 +7,18 @@ uses
   Dialogs, StdCtrls, ComCtrls;
   var save_or_no: boolean;
 type
-  TEdit_Form = class(TForm)
-    Label1: TLabel;
-    write: TRichEdit;
-    Save: TButton;
-    close: TButton;
+  TDiary_Edit_window = class(TForm)
+    Text_label: TLabel;
+    Write_richedit: TRichEdit;
+    Save_btn: TButton;
+    Close_btn: TButton;
     Edit_btn: TButton;
-    back: TButton;
-    procedure SaveClick(Sender: TObject);
-    procedure closeClick(Sender: TObject);
+    Back_btn: TButton;
+    procedure Save_btnClick(Sender: TObject);
+    procedure Close_btnClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Edit_btnClick(Sender: TObject);
-    procedure backClick(Sender: TObject);
+    procedure Back_btnClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -26,73 +26,115 @@ type
   end;
 
 var
-  Edit_Form: TEdit_Form;
+  Diary_Edit_window: TDiary_Edit_window;
 
 implementation
 
-uses Unit4, Unit1;
+uses Unit4, Unit1, Unit2;
 
 {$R *.dfm}
 
-procedure TEdit_Form.SaveClick(Sender: TObject);
+procedure TDiary_Edit_window.Save_btnClick(Sender: TObject);
 var
 text_in_file: TextFile;
 begin
-close_flag := True;
 save_or_no := True;
-Label1.Caption := write.text;
+Text_label.Caption := Write_richedit.text;
 AssignFile(text_in_file, file_name);
 Rewrite(text_in_file);
-writeln(text_in_file,Label1.Caption);
+writeln(text_in_file,Text_label.Caption);
 CloseFile(text_in_file);
 end;
 
-procedure TEdit_Form.closeClick(Sender: TObject);
+procedure TDiary_Edit_window.Close_btnClick(Sender: TObject);
 var
 buttonSelected : Integer;
 begin
-if (Label1.Caption <> write.Text) and (write.Visible = True) then
+if (Text_label.Caption <> Write_richedit.Text) and (Write_richedit.Visible = True) then
     begin
       buttonSelected := MessageDlg('Вы не сохранили. Хотите закрыть?',mtWarning, mbOKCancel, 0);
       if buttonSelected = mrOK then
-        First.close;
+        Login_or_Register_window.close;
     end
   else
-    First.Close;
+    Login_or_Register_window.Close;
 end;
 
-procedure TEdit_Form.FormCreate(Sender: TObject);
+procedure TDiary_Edit_window.FormCreate(Sender: TObject);
 begin
 save_or_no:= False;
 end;
 
-procedure TEdit_Form.Edit_btnClick(Sender: TObject);
+procedure TDiary_Edit_window.Edit_btnClick(Sender: TObject);
 begin
 edit_btn.Visible := False;
-write.Visible := True;
-write.Text := Label1.Caption;
-Save.Visible := True;
+Write_richedit.Visible := True;
+Write_richedit.Text := Text_label.Caption;
+Save_btn.Visible := True;
 end;
 
 
-procedure TEdit_Form.backClick(Sender: TObject);
+procedure TDiary_Edit_window.Back_btnClick(Sender: TObject);
 var
 buttonSelected : Integer;
+SR:TSearchRec;
+FindRes:Integer;
 begin
-
-if (Label1.Caption <> write.Text) and (write.Visible = True) then
+if (Text_label.Caption <> Write_richedit.Text) and (Write_richedit.Visible = True) then
     begin
       buttonSelected := MessageDlg('Вы не сохранили. Хотите перейти в главное меню?',mtWarning, mbOKCancel, 0);
       if buttonSelected = mrOK then
         begin
-          Edit_Form.Hide;
-          Home.Show;
-        end;
+          Edit_btn.Visible := True;
+          Save_btn.Visible := False;
+          Write_richedit.Hide;
+          Write_richedit.Lines.Text :='';
+          Home_window.List_of_Notes_listbox.ClearSelection;
+          Diary_Edit_window.Hide;
+          Home_window.Show;
+          Home_window.List_of_Notes_listbox.Clear;
+          Home_window.List_of_Notes_listbox.Sorted := True;
+          FindRes:=FindFirst('d:\Projects\Course_work\*.txt*',faAnyFile,SR);
+          While FindRes=0 do
+            begin
+              if ((SR.Attr and faDirectory)=faDirectory) and ((SR.Name='.')or(SR.Name='..')) then
+                begin
+                  FindRes:=FindNext(SR);
+                  Continue;
+                end;
+              if (SR.Name <> 'acc.txt') then
+                if (Copy(SR.Name, 1, Length(SR.Name)-14) = username_unit2) then
+                  Home_window.List_of_Notes_listbox.Items.Add(Copy(SR.Name, length(username_unit2)+1, Length(SR.Name)-3));
+            FindRes:=FindNext(SR);
+            end;
+          FindClose(SR);
+      end;
     end
   else
     begin
-    Edit_Form.Hide;
-    Home.Show;
+      Edit_btn.Visible := True;
+      Save_btn.Visible := False;
+      Write_richedit.Hide;
+      Write_richedit.Lines.Text :='';
+      Home_window.List_of_Notes_listbox.ClearSelection;
+      Diary_Edit_window.Hide;
+      Home_window.Show;
+      Home_window.List_of_Notes_listbox.Clear;
+      Home_window.List_of_Notes_listbox.Sorted := True;
+      FindRes:=FindFirst('d:\Projects\Course_work\*.txt*',faAnyFile,SR);
+      While FindRes=0 do
+        begin
+          if ((SR.Attr and faDirectory)=faDirectory) and ((SR.Name='.')or(SR.Name='..')) then
+            begin
+              FindRes:=FindNext(SR);
+              Continue;
+            end;
+          if (SR.Name <> 'acc.txt') then
+            if (Copy(SR.Name, 1, Length(SR.Name)-14) = username_unit2) then
+              Home_window.List_of_Notes_listbox.Items.Add(Copy(SR.Name, length(username_unit2)+1, Length(SR.Name)-3));
+        FindRes:=FindNext(SR);
+      end;
+      FindClose(SR);
     end;
 end;
 
