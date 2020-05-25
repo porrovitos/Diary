@@ -1,6 +1,6 @@
-object Login: TLogin
-  Left = 442
-  Top = 475
+object Login_window: TLogin_window
+  Left = 1188
+  Top = 134
   Width = 219
   Height = 257
   BorderIcons = []
@@ -18,7 +18,7 @@ object Login: TLogin
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
+  object Username_label: TLabel
     Left = 8
     Top = 24
     Width = 185
@@ -31,7 +31,7 @@ object Login: TLogin
     Font.Style = []
     ParentFont = False
   end
-  object Label2: TLabel
+  object Password_label: TLabel
     Left = 8
     Top = 72
     Width = 74
@@ -44,7 +44,7 @@ object Login: TLogin
     Font.Style = []
     ParentFont = False
   end
-  object Label3: TLabel
+  object Error_label: TLabel
     Left = 8
     Top = 184
     Width = 3
@@ -56,23 +56,23 @@ object Login: TLogin
     Font.Style = []
     ParentFont = False
   end
-  object Button1: TButton
+  object Login_btn: TButton
     Left = 8
     Top = 120
     Width = 92
     Height = 49
     Caption = #1042#1086#1081#1090#1080
     TabOrder = 0
-    OnClick = Button1Click
+    OnClick = Login_btnClick
   end
-  object Edit1: TEdit
+  object Username_edit: TEdit
     Left = 8
     Top = 48
     Width = 185
     Height = 21
     TabOrder = 1
   end
-  object Edit2: TEdit
+  object Password_edit: TEdit
     Left = 8
     Top = 96
     Width = 185
@@ -80,22 +80,22 @@ object Login: TLogin
     PasswordChar = '*'
     TabOrder = 2
   end
-  object Button2: TButton
+  object Return_btn: TButton
     Left = 104
     Top = 120
     Width = 92
     Height = 49
     Caption = #1053#1072#1079#1072#1076
     TabOrder = 3
-    OnClick = Button2Click
+    OnClick = Return_btnClick
   end
-  object Button3: TButton
+  object Exit_btn: TButton
     Left = 144
     Top = 8
     Width = 49
     Height = 17
     Caption = 'X'
     TabOrder = 4
-    OnClick = Button3Click
+    OnClick = Exit_btnClick
   end
 end

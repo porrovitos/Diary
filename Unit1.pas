@@ -7,7 +7,7 @@ uses
   Dialogs, StdCtrls;
 
 type
-  TFirst = class(TForm)
+  TLogin_or_Register_window = class(TForm)
     Login_btn: TButton;
     Register_btn: TButton;
     procedure Login_btnClick(Sender: TObject);
@@ -19,24 +19,25 @@ type
   end;
 
 var
-  First: TFirst;
+  Login_or_Register_window: TLogin_or_Register_window;
 
 implementation
 
 uses Unit2, Unit3;
 
 {$R *.dfm}
-
-procedure TFirst.Login_btnClick(Sender: TObject);
+//Открытия окна регистрации
+procedure TLogin_or_Register_window.Login_btnClick(Sender: TObject);
 begin
-First.Hide;
-Login.Show;
+Login_or_Register_window.Hide;
+Login_window.Show;
 end;
 
-procedure TFirst.Register_btnClick(Sender: TObject);
+//Открытия окна входа.
+procedure TLogin_or_Register_window.Register_btnClick(Sender: TObject);
 begin
-First.Hide;
-Sign_In.Show;
+Login_or_Register_window.Hide;
+Register_window.Show;
 end;
 
 end.

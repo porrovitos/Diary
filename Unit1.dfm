@@ -1,4 +1,4 @@
-object First: TFirst
+object Login_or_Register_window: TLogin_or_Register_window
   Left = 620
   Top = 116
   Width = 449
