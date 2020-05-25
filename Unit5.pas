@@ -5,7 +5,6 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ComCtrls;
-  var save_or_no: boolean;
 type
   TDiary_Edit_window = class(TForm)
     Text_label: TLabel;
@@ -16,7 +15,6 @@ type
     Back_btn: TButton;
     procedure Save_btnClick(Sender: TObject);
     procedure Close_btnClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure Edit_btnClick(Sender: TObject);
     procedure Back_btnClick(Sender: TObject);
   private
@@ -38,7 +36,6 @@ procedure TDiary_Edit_window.Save_btnClick(Sender: TObject);
 var
 text_in_file: TextFile;
 begin
-save_or_no := True;
 Text_label.Caption := Write_richedit.text;
 AssignFile(text_in_file, file_name);
 Rewrite(text_in_file);
@@ -60,10 +57,7 @@ if (Text_label.Caption <> Write_richedit.Text) and (Write_richedit.Visible = Tru
     Login_or_Register_window.Close;
 end;
 
-procedure TDiary_Edit_window.FormCreate(Sender: TObject);
-begin
-save_or_no:= False;
-end;
+
 
 procedure TDiary_Edit_window.Edit_btnClick(Sender: TObject);
 begin
@@ -131,7 +125,7 @@ if (Text_label.Caption <> Write_richedit.Text) and (Write_richedit.Visible = Tru
             end;
           if (SR.Name <> 'acc.txt') then
             if (Copy(SR.Name, 1, Length(SR.Name)-14) = username_unit2) then
-              Home_window.List_of_Notes_listbox.Items.Add(Copy(SR.Name, length(username_unit2)+1, Length(SR.Name)-3));
+              Home_window.List_of_Notes_listbox.Items.Add(Copy(SR.Name, length(username_unit2)+1, 10));
         FindRes:=FindNext(SR);
       end;
       FindClose(SR);

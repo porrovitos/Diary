@@ -4,13 +4,12 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Buttons;
+  Dialogs, StdCtrls, Buttons, ExtCtrls;
  var file_name : string;
 type
   THome_window = class(TForm)
     New_Record_btn: TButton;
     Exit_btn: TButton;
-    Control_Panel_btn: TButton;
     List_of_Notes_listbox: TListBox;
     Error_label: TLabel;
     procedure New_Record_btnClick(Sender: TObject);
@@ -75,11 +74,12 @@ Temp_File :TextFile;
 text_of_file : string;
 begin
 Diary_Edit_window.Save_btn.Visible := False;
-save_or_no := True;
 for i:=0 to List_of_Notes_listbox.Count-1 do
     if List_of_Notes_listbox.Selected[i] then
-      file_name := username_unit2 + self.List_of_Notes_listbox.Items.Strings[i];
-
+    begin
+      Diary_Edit_window.Caption := self.List_of_Notes_listbox.Items.Strings[i];
+      file_name := username_unit2 + self.List_of_Notes_listbox.Items.Strings[i] + '.txt';
+    end;
 AssignFile(Temp_File, file_name);
 Reset(Temp_File);
 readln(Temp_File, text_of_file);

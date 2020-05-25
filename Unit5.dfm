@@ -1,6 +1,6 @@
 object Diary_Edit_window: TDiary_Edit_window
-  Left = 425
-  Top = 345
+  Left = 336
+  Top = 239
   Width = 1302
   Height = 675
   BorderIcons = []
@@ -12,12 +12,11 @@ object Diary_Edit_window: TDiary_Edit_window
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
-  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Text_label: TLabel
     Left = 8
-    Top = 40
+    Top = 48
     Width = 1265
     Height = 465
     Constraints.MaxHeight = 465

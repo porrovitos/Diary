@@ -1,6 +1,6 @@
 object Login_window: TLogin_window
-  Left = 1188
-  Top = 134
+  Left = 1039
+  Top = 226
   Width = 219
   Height = 257
   BorderIcons = []

@@ -96,7 +96,7 @@ AssignFile(accaunts, 'acc.txt');
         if (SR.Name <> 'acc.txt') then
           if (Copy(SR.Name, 1, Length(SR.Name)-14) = username_unit2) then
             begin
-              Home_window.List_of_Notes_listbox.Items.Add(Copy(SR.Name, length(username_unit2)+1, Length(SR.Name)-3));
+              Home_window.List_of_Notes_listbox.Items.Add(Copy(SR.Name, length(username_unit2)+1, 10));
             end;
         FindRes:=FindNext(SR);
       end;

@@ -4,13 +4,12 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Buttons;
+  Dialogs, StdCtrls, Buttons, ExtCtrls;
  var file_name : string;
 type
   THome_window = class(TForm)
     New_Record_btn: TButton;
     Exit_btn: TButton;
-    Control_Panel_btn: TButton;
     List_of_Notes_listbox: TListBox;
     Error_label: TLabel;
     procedure New_Record_btnClick(Sender: TObject);
@@ -37,55 +36,34 @@ uses Unit1, Unit5, Unit2;
 procedure THome_window.New_Record_btnClick(Sender: TObject);
 var TempFile: TextFile;
 Data: TDateTime;
-SR:TSearchRec;
-FindRes:Integer;
 text_of_file: String;
 begin
-  Home_window.List_of_Notes_listbox.Clear;
-  Home_window.List_of_Notes_listbox.Sorted := True;
-  FindRes:=FindFirst('d:\Projects\Course_work\*.txt*',faAnyFile,SR);
-  While FindRes=0 do
-  begin
-  if ((SR.Attr and faDirectory)=faDirectory) and ((SR.Name='.')or(SR.Name='..')) then
-    begin
-      FindRes:=FindNext(SR);
-      Continue;
-    end;
-    if (SR.Name <> 'acc.txt') then
-      if (Copy(SR.Name, 1, Length(SR.Name)-14) = username_unit2) then
-        begin
-          Home_window.List_of_Notes_listbox.Items.Add(Copy(SR.Name, length(username_unit2)+1, Length(SR.Name)-3));
-        end;
-    FindRes:=FindNext(SR);
-  end;
-  FindClose(SR);
-
   file_name := username_unit2 + DateToStr(Date)+ '.txt';
   AssignFile(TempFile,DateToStr(Date));
   if fileexists(username_unit2 + DateToStr(Date)+ '.txt') then
-  begin
-    Reset(TempFile,username_unit2 + DateToStr(Date)+ '.txt');
-    Error_label.Caption:= 'Запись на такой дате уже существует.'+ #13#10+'Откройте запись и если надо - отредактируйте ее.';
-  end
-else
-  begin
-    rewrite(TempFile,username_unit2 + DateToStr(Date)+ '.txt');
-    Diary_Edit_window.Show;
-    CloseFile(TempFile);
-    Reset(TempFile);
-    readln(TempFile, text_of_file);
-    Diary_Edit_window.Text_label.Caption := text_of_file;
-    Home_window.Hide;
-    Diary_Edit_window.Write_richedit.Visible := True;
-    Diary_Edit_window.Save_btn.Visible := True;
-    Diary_Edit_window.Edit_btn.Visible := False;
-  end;
-CloseFile(TempFile);
+    begin
+      Reset(TempFile,username_unit2 + DateToStr(Date)+ '.txt');
+      Error_label.Caption:= 'Запись на такой дате уже существует.'+ #13#10+'Откройте запись и если надо - отредактируйте ее.';
+    end
+  else
+    begin
+      rewrite(TempFile,username_unit2 + DateToStr(Date)+ '.txt');
+      Diary_Edit_window.Show;
+      CloseFile(TempFile);
+      Reset(TempFile);
+      readln(TempFile, text_of_file);
+      Diary_Edit_window.Text_label.Caption := text_of_file;
+      Home_window.Hide;
+      Diary_Edit_window.Write_richedit.Visible := True;
+      Diary_Edit_window.Save_btn.Visible := True;
+      Diary_Edit_window.Edit_btn.Visible := False;
+    end;
+  CloseFile(TempFile);
 end;
 
 procedure THome_window.Exit_btnClick(Sender: TObject);
 begin
-Login_or_Register_window.Close;
+  Login_or_Register_window.Close;
 end;
 
 
@@ -96,10 +74,9 @@ Temp_File :TextFile;
 text_of_file : string;
 begin
 Diary_Edit_window.Save_btn.Visible := False;
-save_or_no := True;
 for i:=0 to List_of_Notes_listbox.Count-1 do
     if List_of_Notes_listbox.Selected[i] then
-      file_name := username_unit2 + self.List_of_Notes_listbox.Items.Strings[i];
+      file_name := username_unit2 + self.List_of_Notes_listbox.Items.Strings[i] + '.txt';
 
 AssignFile(Temp_File, file_name);
 Reset(Temp_File);
