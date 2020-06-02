@@ -1,6 +1,6 @@
 object Login_or_Register_window: TLogin_or_Register_window
-  Left = 620
-  Top = 116
+  Left = 1080
+  Top = 255
   Width = 449
   Height = 110
   BorderIcons = [biSystemMenu]

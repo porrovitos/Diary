@@ -1,6 +1,6 @@
 object Register_window: TRegister_window
-  Left = 824
-  Top = 256
+  Left = 1241
+  Top = 250
   Width = 219
   Height = 257
   BorderIcons = []

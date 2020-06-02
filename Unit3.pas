@@ -46,6 +46,7 @@ accaunts: TextFile;
 name,pass,nick:string;
 i,k:integer;
 begin
+////////ПРОВЕРКА ДАННЫХ\\\\\\
   AssignFile(accaunts, 'acc.txt');
   Reset(accaunts);
   readln(accaunts,nick);
@@ -54,6 +55,7 @@ begin
   for i:=0 to 100 do
     begin
       readln(accaunts,name);
+///////СРАВНЕНИЕ НИКА С НИКАМИ В БД\\\\\\\\\\\
       if name = Username_edit.Text then
         begin
           Error_label.Caption := 'Такой аккаунт уже есть.';
@@ -76,6 +78,7 @@ begin
       Error_label.Caption := 'Вы не ввели пароль и логин'+#13#10+'или они слишком короткие';
       k:=1;
     end;
+////////ДАБАВЛЕНИЕ НИКА В БД\\\\\\\\\\\\
   nick := Username_edit.Text;
   pass := Password_edit.Text;
   CloseFile(accaunts);
@@ -92,6 +95,7 @@ begin
   CloseFile(accaunts);
 end;
 
+///////////ВЫХОД ИЗ ПРОГРАММЫ\\\\\\\\\\\\
 procedure TRegister_window.Exit_btnClick(Sender: TObject);
 begin
 Login_or_Register_window.Close;

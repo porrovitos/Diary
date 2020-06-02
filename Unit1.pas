@@ -26,14 +26,14 @@ implementation
 uses Unit2, Unit3;
 
 {$R *.dfm}
-//Открытия окна регистрации
+//ОТКРЫТИЕ ОКНА ВХОДА\\\\\\\\\\\
 procedure TLogin_or_Register_window.Login_btnClick(Sender: TObject);
 begin
 Login_or_Register_window.Hide;
 Login_window.Show;
 end;
 
-//Открытия окна входа.
+//ОТКРЫТИЯ ОКНА РЕГИСТРАЦИИ\\\\\\\\\\\
 procedure TLogin_or_Register_window.Register_btnClick(Sender: TObject);
 begin
 Login_or_Register_window.Hide;

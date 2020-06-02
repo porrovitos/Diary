@@ -49,6 +49,7 @@ FindRes:Integer;
 begin
 AssignFile(accaunts, 'acc.txt');
   k:=0;
+  /////////////ПРОВЕРКА ВВОДА ДАННЫХ/////////////
   if (length(Username_edit.text)=0) or (length(Username_edit.text)=1) then
     begin
       Error_label.Caption := 'Вы не ввели логин'+#13#10+'или он слишком короткий';
@@ -83,6 +84,7 @@ AssignFile(accaunts, 'acc.txt');
         else
           Error_label.Caption:= 'Неверный логин или пароль.'
       end;
+    /////////////ДОБОВЛЕНИЕ ЭЛЕМЕНТОВ В LISTBOX\\\\\\\\\\\\\\\\
     Home_window.List_of_Notes_listbox.Clear;
     Home_window.List_of_Notes_listbox.Sorted := True;
     FindRes:=FindFirst('d:\Projects\Course_work\*.txt*',faAnyFile,SR);
@@ -103,7 +105,7 @@ AssignFile(accaunts, 'acc.txt');
     FindClose(SR);
   end;
 end;
-
+///////////ВЫХОД ИЗ ПРОГРАММЫ\\\\\\\\\\\\
 procedure TLogin_window.Exit_btnClick(Sender: TObject);
 begin
 Login_or_Register_window.Close;

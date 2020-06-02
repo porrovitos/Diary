@@ -31,7 +31,7 @@ implementation
 uses Unit4, Unit1, Unit2;
 
 {$R *.dfm}
-
+/////////////ймнойю янупюмемхъ\\\\\\\\\\\
 procedure TDiary_Edit_window.Save_btnClick(Sender: TObject);
 var
 text_in_file: TextFile;
@@ -43,6 +43,7 @@ writeln(text_in_file,Text_label.Caption);
 CloseFile(text_in_file);
 end;
 
+///////////бшунд хг опнцпюллш\\\\\\\\\\\\
 procedure TDiary_Edit_window.Close_btnClick(Sender: TObject);
 var
 buttonSelected : Integer;
@@ -58,7 +59,7 @@ if (Text_label.Caption <> Write_richedit.Text) and (Write_richedit.Visible = Tru
 end;
 
 
-
+///////////хглемемхе гюохяйх\\\\\\\\\\\\
 procedure TDiary_Edit_window.Edit_btnClick(Sender: TObject);
 begin
 edit_btn.Visible := False;
@@ -67,7 +68,7 @@ Write_richedit.Text := Text_label.Caption;
 Save_btn.Visible := True;
 end;
 
-
+///////////бшунд хг гюохяйх\\\\\\\\\\\\
 procedure TDiary_Edit_window.Back_btnClick(Sender: TObject);
 var
 buttonSelected : Integer;
